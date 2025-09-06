@@ -1,0 +1,35 @@
+[project]
+name = "useful-tools"
+version = "0.1.0"
+description = "A collection of useful tools."
+# Core dependencies needed by all tools
+dependencies = [
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+# Dependencies needed ONLY for the chinese_converter
+chinese_converter = [
+    "opencc-python-reimplemented~=0.1.7",
+    "lxml>=4.9.0",
+    "ebooklib>=0.18",
+    "beautifulsoup4>=4.11.0",
+]
+
+# Dependencies for the anime1_downloader
+anime1_downloader = [
+    "requests",
+    "beautifulsoup4",
+    "lxml",
+    "yt-dlp",
+]
+
+# This group includes all other optional dependency groups.
+# Add future utilities here as well.
+all = [
+    "useful-tools[chinese_converter]",
+    "useful-tools[anime1_downloader]",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
