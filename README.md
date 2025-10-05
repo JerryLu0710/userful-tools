@@ -55,8 +55,6 @@ uv pip install -e .
 
 ## Available Utilities
 
----
-
 ### Chinese Converter
 
 A flexible, multi-format tool for converting Chinese text between Simplified and Traditional characters.
@@ -157,4 +155,84 @@ python -m anime1_downloader <url> [options]
 
 ```bash
 python -m anime1_downloader "https://anime1.me/18305" -j 8
+```
+
+---
+
+### Image Tool
+
+A multi-functional tool for image and video manipulation.
+
+**Features:**
+
+-   **Coordinate Marking**: View an image, mark coordinates with mouse clicks, and save the marked image.
+-   **Frame Extraction**: Extract a specific frame from a video file.
+-   **Image Capture**: Capture images from a camera.
+
+**Installation:**
+
+To use the Image Tool, install its specific dependencies using the `[image_tool]` extra:
+
+```bash
+uv pip install -e .'[image_tool]'
+```
+
+**Usage:**
+
+The script can be run as a module from the project root with the following subcommands:
+
+```bash
+python -m image_tool <subcommand> [options]
+```
+
+#### `coords`
+
+View an image and mark coordinates.
+
+**Arguments:**
+
+| Argument          | Description                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| `image_path`      | Path to the image file.                                                                                     |
+| `--ratio`         | (Optional) The resize ratio for the image.                                                                  |
+
+**Example:**
+
+```bash
+python -m image_tool coords "path/to/my_image.jpg" --ratio 0.5
+```
+
+#### `frame`
+
+Extract a frame from a video.
+
+**Arguments:**
+
+| Argument          | Description                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| `-v`, `--video`   | Path to the input video file.                                                                               |
+| `-t`, `--time`    | Time in seconds at which to extract the frame.                                                              |
+| `-o`, `--output`  | (Optional) Directory to save the extracted frame.                                                           |
+
+**Example:**
+
+```bash
+python -m image_tool frame -v "path/to/my_video.mp4" -t 60 -o "path/to/output"
+```
+
+#### `capture`
+
+Capture an image from a camera.
+
+**Arguments:**
+
+| Argument          | Description                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
+| `-c`, `--camera`  | (Optional) The camera index to use.                                                                         |
+| `-s`, `--save_dir`| (Optional) Directory to save the captured images.                                                           |
+
+**Example:**
+
+```bash
+python -m image_tool capture -c 1 -s "path/to/captures"
 ```

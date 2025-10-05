@@ -219,3 +219,6 @@ __marimo__/
 test/
 temp/
 logs/
+
+# Gemini settings
+.gemini/

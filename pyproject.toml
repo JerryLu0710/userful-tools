@@ -24,11 +24,16 @@ anime1_downloader = [
     "yt-dlp",
 ]
 
+image_tool = [
+    "opencv-python",
+]
+
 # This group includes all other optional dependency groups.
 # Add future utilities here as well.
 all = [
     "useful-tools[chinese_converter]",
     "useful-tools[anime1_downloader]",
+    "useful-tools[image_tool]",
 ]
 
 [tool.setuptools.packages.find]
