@@ -222,3 +222,6 @@ logs/
 
 # Gemini settings
 .gemini/
+
+# Agent logging on task
+agent_trace/

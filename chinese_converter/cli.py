@@ -5,7 +5,8 @@ import sys
 from pathlib import Path
 import time
 
-from config import Config, EPUBConfig
+from config import Config
+from .config import EPUBConfig
 from logger_setup import get_logger
 from chinese_converter.text_converter import ChineseConverter
 from chinese_converter.formats.epub_handler import EPUBHandler

@@ -7,7 +7,8 @@ from pathlib import Path
 from lxml import etree
 from bs4 import BeautifulSoup, NavigableString
 
-from config import Config, EPUBConfig
+from config import Config
+from ..config import EPUBConfig
 from logger_setup import get_logger
 from chinese_converter.formats.base_handler import BaseFormatHandler
 

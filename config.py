@@ -6,7 +6,6 @@ Loads settings from .env file and provides centralized configuration.
 import os
 import logging
 from pathlib import Path
-from typing import Optional, Dict, Any
 from enum import Enum
 from dotenv import load_dotenv
 
@@ -72,42 +71,3 @@ class Config:
         """
         cls.ensure_directories()
         return cls.LOG_DIRECTORY / f"{script_name}.log"
-
-
-# EPUB Converter specific configuration
-class EPUBConfig:
-    """EPUB converter specific configuration."""
-    # Conversion settings
-    DEFAULT_CONVERSION = os.getenv("EPUB_DEFAULT_CONVERSION", "s2t")
-    CREATE_BACKUP = os.getenv("EPUB_CREATE_BACKUP", "true").lower() == "true"
-    CONVERSION_TYPES = ["s2t", "s2tw", "s2hk", "t2s"]
-
-    # File processing
-    TRANSLATABLE_EXTENSIONS = {
-        ".opf",
-        ".ncx",
-        ".xhtml",
-        ".html",
-        ".htm",
-        ".xml",
-        ".css",
-    }
-
-    # EPUB structure constants
-    MIMETYPE_FILE = "mimetype"
-    META_INF_DIR = "META-INF"
-    CONTAINER_XML = "META-INF/container.xml"
-
-# Anime1 Downloader specific configuration
-class AnimeDownloaderConfig:
-    """Anime1 downloader specific configuration."""
-    DOWNLOAD_DIR = os.getenv("ANIME1_DOWNLOAD_DIR", "anime")
-    MAX_CONCURRENT_DOWNLOADS = int(os.getenv("ANIME1_MAX_CONCURRENT_DOWNLOADS", 4))
-
-# Image Tool specific configuration
-class ImageToolConfig:
-    """Image tool specific configuration."""
-    DEFAULT_OUTPUT_DIR = os.getenv("IMAGE_TOOL_DEFAULT_OUTPUT_DIR", ".")
-    DEFAULT_SAVE_DIR = os.getenv("IMAGE_TOOL_DEFAULT_SAVE_DIR", "./images")
-    DEFAULT_CAMERA_INDEX = int(os.getenv("IMAGE_TOOL_DEFAULT_CAMERA_INDEX", 0))
-    DEFAULT_RESIZE_RATIO = float(os.getenv("IMAGE_TOOL_DEFAULT_RESIZE_RATIO", 0.5))

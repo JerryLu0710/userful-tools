@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Project-level imports
-from config import AnimeDownloaderConfig
+from .config import AnimeDownloaderConfig
 from logger_setup import get_logger
 
 # Setup project-wide logger

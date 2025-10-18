@@ -4,7 +4,7 @@ import argparse
 import os
 from image_tool import core
 from logger_setup import get_logger
-from config import ImageToolConfig
+from .config import ImageToolConfig
 
 logger = get_logger(__name__, "image_tool")
 
