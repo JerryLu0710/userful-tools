@@ -1,8 +1,10 @@
 """Core logic for image tools."""
 
-import cv2
-import sys
 import os
+import sys
+
+import cv2
+
 from logger_setup import get_logger
 
 logger = get_logger(__name__, "image_tool")
@@ -60,7 +62,7 @@ def extract_frame(video_path, desired_time, output_dir):
     video = cv2.VideoCapture(video_path)
 
     if not video.isOpened():
-        raise IOError(f"Error: Could not open video {video_path}")
+        raise OSError(f"Error: Could not open video {video_path}")
 
     fps = video.get(cv2.CAP_PROP_FPS)
     total_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -74,7 +76,7 @@ def extract_frame(video_path, desired_time, output_dir):
 
     ret, frame = video.read()
     if not ret:
-        raise IOError(f"Error: Could not read frame at {desired_time} seconds.")
+        raise OSError(f"Error: Could not read frame at {desired_time} seconds.")
 
     output_image_path = os.path.join(output_dir, f'frame_at_{desired_time}s.jpg')
     cv2.imwrite(output_image_path, frame)
@@ -90,7 +92,7 @@ def capture_and_save_images(camera_index, save_dir):
     cap = cv2.VideoCapture(camera_index)
 
     if not cap.isOpened():
-        raise IOError(f"Error: Could not open camera {camera_index}.")
+        raise OSError(f"Error: Could not open camera {camera_index}.")
 
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)

@@ -1,8 +1,9 @@
 """Combined TXT handling, processing, and validation."""
 
 from pathlib import Path
-from logger_setup import get_logger
+
 from chinese_converter.formats.base_handler import BaseFormatHandler
+from logger_setup import get_logger
 
 logger = get_logger(__name__, "chinese_converter")
 
@@ -15,7 +16,7 @@ class TXTHandler(BaseFormatHandler):
     def process_file(self, input_path: Path, output_path: Path) -> bool:
         """Process TXT file with Chinese conversion."""
         try:
-            with open(input_path, "r", encoding="utf-8") as f:
+            with open(input_path, encoding="utf-8") as f:
                 content = f.read()
 
             converted_content = self.converter.convert(content)
@@ -36,6 +37,6 @@ class TXTHandler(BaseFormatHandler):
 
     def validate_file(self, file_path: Path) -> tuple[bool, list]:
         """Validate TXT file."""
-        if not file_path.suffix.lower() == ".txt":
+        if file_path.suffix.lower() != ".txt":
             return False, ["Not a TXT file"]
         return True, []

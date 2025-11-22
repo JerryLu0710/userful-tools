@@ -5,19 +5,18 @@ Provides consistent logging configuration across the project.
 
 import logging
 import sys
-from pathlib import Path
 from logging.handlers import RotatingFileHandler
-from typing import Optional, Dict, Any
+
 from config import Config
 
 
 class LoggerSetup:
     """Centralized logger setup class."""
 
-    _loggers: Dict[str, logging.Logger] = {}
+    _loggers: dict[str, logging.Logger] = {}
 
     @classmethod
-    def get_logger(cls, name: str, script_name: Optional[str] = None) -> logging.Logger:
+    def get_logger(cls, name: str, script_name: str | None = None) -> logging.Logger:
         """
         Get or create a logger with consistent configuration.
 
@@ -93,7 +92,7 @@ class LoggerSetup:
 
 
 # Convenience function for easy import
-def get_logger(name: str, script_name: Optional[str] = None) -> logging.Logger:
+def get_logger(name: str, script_name: str | None = None) -> logging.Logger:
     """
     Convenience function to get a logger.
 

@@ -2,6 +2,7 @@
 name = "useful-tools"
 version = "0.1.0"
 description = "A collection of useful tools."
+requires-python = ">=3.10"
 # Core dependencies needed by all tools
 dependencies = [
     "python-dotenv>=1.0.0",
@@ -38,3 +39,27 @@ all = [
 
 [tool.setuptools.packages.find]
 where = ["."]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.3",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "A"]
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+ignore = [
+  "E501", # line too long, handled by black
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15
+
+[tool.ruff.format]
+quote-style = "double"
+

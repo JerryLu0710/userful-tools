@@ -1,7 +1,8 @@
 """Simple OpenCC Chinese text converter."""
 
-import opencc
 import re
+
+import opencc
 
 from logger_setup import get_logger
 

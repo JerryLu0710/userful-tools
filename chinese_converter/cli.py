@@ -2,16 +2,16 @@
 
 import argparse
 import sys
-from pathlib import Path
 import time
+from pathlib import Path
 
-from config import Config
-from .config import EPUBConfig
-from logger_setup import get_logger
-from chinese_converter.text_converter import ChineseConverter
 from chinese_converter.formats.epub_handler import EPUBHandler
 from chinese_converter.formats.txt_handler import TXTHandler
+from chinese_converter.text_converter import ChineseConverter
+from config import Config
+from logger_setup import get_logger
 
+from .config import EPUBConfig
 
 logger = get_logger(__name__, "chinese_converter")
 

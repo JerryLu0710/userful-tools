@@ -1,16 +1,18 @@
 """Combined EPUB handling, processing, and validation."""
 
-import zipfile
-import tempfile
 import shutil
+import tempfile
+import zipfile
 from pathlib import Path
-from lxml import etree
-from bs4 import BeautifulSoup, NavigableString
 
-from config import Config
-from ..config import EPUBConfig
-from logger_setup import get_logger
+from bs4 import BeautifulSoup, NavigableString
+from lxml import etree
+
 from chinese_converter.formats.base_handler import BaseFormatHandler
+from config import Config
+from logger_setup import get_logger
+
+from ..config import EPUBConfig
 
 logger = get_logger(__name__, "chinese_converter")
 
@@ -45,7 +47,7 @@ class EPUBHandler(BaseFormatHandler):
 
     def validate_file(self, file_path: Path) -> tuple[bool, list]:
         """Validate EPUB file - implements BaseFormatHandler interface."""
-        if not file_path.suffix.lower() == '.epub':
+        if file_path.suffix.lower() != '.epub':
             return False, ["Not an EPUB file"]
         
         self.path = file_path
@@ -175,7 +177,7 @@ class EPUBHandler(BaseFormatHandler):
 
     def _process_opf(self, file_path: Path):
         """Process OPF metadata file."""
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             content = f.read()
 
         root = etree.fromstring(content.encode("utf-8"))
@@ -200,7 +202,7 @@ class EPUBHandler(BaseFormatHandler):
 
     def _process_ncx(self, file_path: Path):
         """Process NCX navigation file."""
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             content = f.read()
 
         root = etree.fromstring(content.encode("utf-8"))
@@ -217,7 +219,7 @@ class EPUBHandler(BaseFormatHandler):
 
     def _process_html(self, file_path: Path):
         """Process HTML content files."""
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             content = f.read()
 
         soup = BeautifulSoup(content, "html.parser")
@@ -248,7 +250,7 @@ class EPUBHandler(BaseFormatHandler):
 
     def _process_text_file(self, file_path: Path):
         """Process generic text files (CSS, XML)."""
-        with open(file_path, "r", encoding="utf-8") as f:
+        with open(file_path, encoding="utf-8") as f:
             content = f.read()
 
         # Simple text conversion (works for CSS comments and XML text)
