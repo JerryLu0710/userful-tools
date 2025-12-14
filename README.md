@@ -236,3 +236,67 @@ Capture an image from a camera.
 ```bash
 python -m image_tool capture -c 1 -s "path/to/captures"
 ```
+---
+
+### YouTube Music Downloader
+
+A tool to download audio from YouTube videos/playlists and manage your local music library.
+
+**Features:**
+
+-   **Download**: Download audio from YouTube videos, playlists, or channels.
+-   **Verify**: Check your local backup against a history file to find missing songs.
+-   **Metadata**: Extract YouTube IDs from downloaded files.
+-   **Migrate**: Redownload songs from a text list.
+
+**Installation:**
+
+To use the YouTube Music Downloader, install its specific dependencies using the `[ytmusic_dl]` extra:
+
+```bash
+uv pip install -e .'[ytmusic_dl]'
+```
+
+**Usage:**
+
+The script can be run as a module from the project root:
+
+```bash
+python -m ytmusic_dl <command> [options]
+```
+
+#### `download`
+
+Download audio from YouTube.
+
+**Arguments:**
+
+| Argument          | Description                                                                 |
+| ----------------- | --------------------------------------------------------------------------- |
+| `urls`            | One or more YouTube URLs (video/playlist/channel).                          |
+| `-o`, `--output`  | Output directory. Defaults to configured path.                              |
+| `-f`, `--format`  | Audio format (e.g., `mp3`). Default is `best` (keeps original).             |
+| `-dr`, `--dry-run`| Show what would be downloaded without downloading.                          |
+
+**Example:**
+
+```bash
+python -m ytmusic_dl download "https://music.youtube.com/playlist?list=..."
+```
+
+#### `verify`
+
+Verify backup files against history.
+
+**Arguments:**
+
+| Argument          | Description                                                                 |
+| ----------------- | --------------------------------------------------------------------------- |
+| `-b`, `--backup-dir` | Directory containing the backup audio files.                             |
+| `-d`, `--download-missing` | Automatically download missing songs.                                |
+
+**Example:**
+
+```bash
+python -m ytmusic_dl verify -d
+```
