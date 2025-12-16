@@ -1,3 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "chinese_converter",
+    "anime1_downloader",
+    "image_tool",
+    "ytmusic_dl",
+    "novel_scraper",
+    "utils",
+]
+
 [project]
 name = "useful-tools"
 version = "0.1.0"
@@ -8,8 +22,13 @@ dependencies = [
     "python-dotenv>=1.0.0",
 ]
 
-[project.optional-dependencies]
-# Dependencies needed ONLY for the chinese_converter
+[dependency-groups]
+# Development dependencies
+dev = [
+    "ruff>=0.14.3",
+]
+
+# Dependencies for the chinese_converter tool
 chinese_converter = [
     "opencc-python-reimplemented~=0.1.7",
     "lxml>=4.9.0",
@@ -17,7 +36,7 @@ chinese_converter = [
     "beautifulsoup4>=4.11.0",
 ]
 
-# Dependencies for the anime1_downloader
+# Dependencies for the anime1_downloader tool
 anime1_downloader = [
     "requests",
     "beautifulsoup4",
@@ -25,30 +44,15 @@ anime1_downloader = [
     "yt-dlp",
 ]
 
+# Dependencies for the image_tool
 image_tool = [
     "opencv-python",
 ]
 
+# Dependencies for the ytmusic_dl tool
 ytmusic_dl = [
     "yt-dlp",
     "mutagen",
-]
-
-# This group includes all other optional dependency groups.
-# Add future utilities here as well.
-all = [
-    "useful-tools[chinese_converter]",
-    "useful-tools[anime1_downloader]",
-    "useful-tools[image_tool]",
-    "useful-tools[ytmusic_dl]",
-]
-
-[tool.setuptools.packages.find]
-where = ["."]
-
-[dependency-groups]
-dev = [
-    "ruff>=0.14.3",
 ]
 
 [tool.ruff]

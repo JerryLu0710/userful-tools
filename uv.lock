@@ -445,22 +445,12 @@ wheels = [
 [[package]]
 name = "useful-tools"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "python-dotenv" },
 ]
 
-[package.optional-dependencies]
-all = [
-    { name = "beautifulsoup4" },
-    { name = "ebooklib" },
-    { name = "lxml" },
-    { name = "mutagen" },
-    { name = "opencc-python-reimplemented" },
-    { name = "opencv-python" },
-    { name = "requests" },
-    { name = "yt-dlp" },
-]
+[package.dev-dependencies]
 anime1-downloader = [
     { name = "beautifulsoup4" },
     { name = "lxml" },
@@ -473,6 +463,9 @@ chinese-converter = [
     { name = "lxml" },
     { name = "opencc-python-reimplemented" },
 ]
+dev = [
+    { name = "ruff" },
+]
 image-tool = [
     { name = "opencv-python" },
 ]
@@ -481,34 +474,28 @@ ytmusic-dl = [
     { name = "yt-dlp" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "ruff" },
-]
-
 [package.metadata]
-requires-dist = [
-    { name = "beautifulsoup4", marker = "extra == 'anime1-downloader'" },
-    { name = "beautifulsoup4", marker = "extra == 'chinese-converter'", specifier = ">=4.11.0" },
-    { name = "ebooklib", marker = "extra == 'chinese-converter'", specifier = ">=0.18" },
-    { name = "lxml", marker = "extra == 'anime1-downloader'" },
-    { name = "lxml", marker = "extra == 'chinese-converter'", specifier = ">=4.9.0" },
-    { name = "mutagen", marker = "extra == 'ytmusic-dl'" },
-    { name = "opencc-python-reimplemented", marker = "extra == 'chinese-converter'", specifier = "~=0.1.7" },
-    { name = "opencv-python", marker = "extra == 'image-tool'" },
-    { name = "python-dotenv", specifier = ">=1.0.0" },
-    { name = "requests", marker = "extra == 'anime1-downloader'" },
-    { name = "useful-tools", extras = ["anime1-downloader"], marker = "extra == 'all'" },
-    { name = "useful-tools", extras = ["chinese-converter"], marker = "extra == 'all'" },
-    { name = "useful-tools", extras = ["image-tool"], marker = "extra == 'all'" },
-    { name = "useful-tools", extras = ["ytmusic-dl"], marker = "extra == 'all'" },
-    { name = "yt-dlp", marker = "extra == 'anime1-downloader'" },
-    { name = "yt-dlp", marker = "extra == 'ytmusic-dl'" },
-]
-provides-extras = ["chinese-converter", "anime1-downloader", "image-tool", "ytmusic-dl", "all"]
+requires-dist = [{ name = "python-dotenv", specifier = ">=1.0.0" }]
 
 [package.metadata.requires-dev]
+anime1-downloader = [
+    { name = "beautifulsoup4" },
+    { name = "lxml" },
+    { name = "requests" },
+    { name = "yt-dlp" },
+]
+chinese-converter = [
+    { name = "beautifulsoup4", specifier = ">=4.11.0" },
+    { name = "ebooklib", specifier = ">=0.18" },
+    { name = "lxml", specifier = ">=4.9.0" },
+    { name = "opencc-python-reimplemented", specifier = "~=0.1.7" },
+]
 dev = [{ name = "ruff", specifier = ">=0.14.3" }]
+image-tool = [{ name = "opencv-python" }]
+ytmusic-dl = [
+    { name = "mutagen" },
+    { name = "yt-dlp" },
+]
 
 [[package]]
 name = "yt-dlp"
