@@ -12,3 +12,4 @@ class AnimeDownloaderConfig:
 
     DOWNLOAD_DIR = os.getenv("ANIME1_DOWNLOAD_DIR", "anime")
     MAX_CONCURRENT_DOWNLOADS = int(os.getenv("ANIME1_MAX_CONCURRENT_DOWNLOADS", 4))
+    DEFAULT_HISTORY_FILE = os.getenv("ANIME1_HISTORY_FILE", "anime_downloaded.jsonl")
