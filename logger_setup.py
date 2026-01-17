@@ -47,9 +47,7 @@ class LoggerSetup:
             Config.LOG_FORMAT_CONSOLE, datefmt=Config.LOG_DATE_FORMAT
         )
 
-        file_formatter = logging.Formatter(
-            Config.LOG_FORMAT_FILE, datefmt=Config.LOG_DATE_FORMAT
-        )
+        file_formatter = logging.Formatter(Config.LOG_FORMAT_FILE, datefmt=Config.LOG_DATE_FORMAT)
 
         # Console handler
         if Config.LOG_TO_CONSOLE:

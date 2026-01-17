@@ -9,6 +9,7 @@ from logger_setup import get_logger
 
 logger = get_logger(__name__, "image_tool")
 
+
 def mark_coordinates(image_path, resize_ratio=None):
     """
     Image Viewer and Coordinate Marker
@@ -19,7 +20,7 @@ def mark_coordinates(image_path, resize_ratio=None):
         sys.exit(1)
 
     display_image = image.copy()
-    
+
     if resize_ratio:
         height, width = image.shape[:2]
         new_width = int(width * resize_ratio)
@@ -35,8 +36,15 @@ def mark_coordinates(image_path, resize_ratio=None):
                 orig_x, orig_y = x, y
 
             cv2.circle(display_image, (x, y), 5, (0, 0, 255), -1)
-            cv2.putText(display_image, f"({orig_x}, {orig_y})", (x, y), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+            cv2.putText(
+                display_image,
+                f"({orig_x}, {orig_y})",
+                (x, y),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (0, 0, 255),
+                2,
+            )
             cv2.imshow("Image", display_image)
 
     cv2.imshow("Image", display_image)
@@ -44,12 +52,12 @@ def mark_coordinates(image_path, resize_ratio=None):
 
     while True:
         key = cv2.waitKey(1) & 0xFF
-        if key == ord('s'):
+        if key == ord("s"):
             base_name = os.path.splitext(os.path.basename(image_path))[0]
             save_path = f"{base_name}_marked.jpg"
             cv2.imwrite(save_path, display_image)
             logger.info(f"Image saved as {save_path}")
-        elif key == ord('q'):
+        elif key == ord("q"):
             break
 
     cv2.destroyAllWindows()
@@ -78,12 +86,13 @@ def extract_frame(video_path, desired_time, output_dir):
     if not ret:
         raise OSError(f"Error: Could not read frame at {desired_time} seconds.")
 
-    output_image_path = os.path.join(output_dir, f'frame_at_{desired_time}s.jpg')
+    output_image_path = os.path.join(output_dir, f"frame_at_{desired_time}s.jpg")
     cv2.imwrite(output_image_path, frame)
 
     video.release()
 
     return output_image_path
+
 
 def capture_and_save_images(camera_index, save_dir):
     """
@@ -107,16 +116,16 @@ def capture_and_save_images(camera_index, save_dir):
             logger.error("Can't receive frame. Exiting ...")
             break
 
-        cv2.imshow('Camera', frame)
+        cv2.imshow("Camera", frame)
 
         key = cv2.waitKey(1) & 0xFF
 
-        if key == ord('s'):
+        if key == ord("s"):
             img_name = os.path.join(save_dir, f"{img_counter:02d}.jpg")
             cv2.imwrite(img_name, frame)
             logger.info(f"{img_name} saved!")
             img_counter += 1
-        elif key == ord('q'):
+        elif key == ord("q"):
             logger.info("Quitting...")
             break
 

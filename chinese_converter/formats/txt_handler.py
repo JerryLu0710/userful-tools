@@ -10,6 +10,7 @@ logger = get_logger(__name__, "chinese_converter")
 
 class TXTHandler(BaseFormatHandler):
     """Handles TXT file processing."""
+
     def __init__(self, path, converter):
         super().__init__(path, converter)
 

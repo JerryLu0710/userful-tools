@@ -27,15 +27,15 @@ class EPUBHandler(BaseFormatHandler):
 
         if not self.path.exists():
             raise FileNotFoundError(f"EPUB not found: {path}")
-        
+
     def process_file(self, input_path: Path, output_path: Path) -> bool:
         """Process EPUB file - implements BaseFormatHandler interface."""
         self.path = input_path
-        
+
         if not self.path.exists():
             logger.error(f"EPUB not found: {input_path}")
             return False
-        
+
         try:
             # Use existing process() method
             if self.process():
@@ -47,9 +47,9 @@ class EPUBHandler(BaseFormatHandler):
 
     def validate_file(self, file_path: Path) -> tuple[bool, list]:
         """Validate EPUB file - implements BaseFormatHandler interface."""
-        if file_path.suffix.lower() != '.epub':
+        if file_path.suffix.lower() != ".epub":
             return False, ["Not an EPUB file"]
-        
+
         self.path = file_path
         return self.validate()
 
@@ -117,9 +117,7 @@ class EPUBHandler(BaseFormatHandler):
                 # Add mimetype first (uncompressed)
                 mimetype_path = Path(self.temp_dir) / "mimetype"
                 if mimetype_path.exists():
-                    zf.write(
-                        mimetype_path, "mimetype", compress_type=zipfile.ZIP_STORED
-                    )
+                    zf.write(mimetype_path, "mimetype", compress_type=zipfile.ZIP_STORED)
 
                 # Add other files
                 for file_path in Path(self.temp_dir).rglob("*"):
@@ -136,9 +134,7 @@ class EPUBHandler(BaseFormatHandler):
 
     def _extract(self):
         """Extract EPUB to temp directory."""
-        self.temp_dir = tempfile.mkdtemp(
-            prefix=Config.TEMP_DIR_PREFIX, dir=Config.TEMP_DIRECTORY
-        )
+        self.temp_dir = tempfile.mkdtemp(prefix=Config.TEMP_DIR_PREFIX, dir=Config.TEMP_DIRECTORY)
 
         with zipfile.ZipFile(self.path, "r") as zf:
             zf.extractall(self.temp_dir)

@@ -35,9 +35,7 @@ class ChineseTextConverter:
         self.conversion_type = conversion_type
         self.converter = ChineseConverter(conversion_type)
 
-    def convert_file(
-        self, input_path: str, output_path: str, create_backup: bool = True
-    ) -> bool:
+    def convert_file(self, input_path: str, output_path: str, create_backup: bool = True) -> bool:
         """Convert a single file."""
         logger.info(f"Converting: {input_path} -> {output_path}")
         start_time = time.time()
@@ -120,9 +118,7 @@ def _generate_default_output(input_path: str, is_batch: bool) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Convert Chinese text in various file formats"
-    )
+    parser = argparse.ArgumentParser(description="Convert Chinese text in various file formats")
     parser.add_argument("input", help="Input file or directory (.epub, .txt)")
     parser.add_argument("output", nargs="?", help="Output file or directory (optional)")
     parser.add_argument(
@@ -148,9 +144,7 @@ def main():
         if args.batch:
             converter.convert_batch(args.input, args.output)
         else:
-            success = converter.convert_file(
-                args.input, args.output, not args.no_backup
-            )
+            success = converter.convert_file(args.input, args.output, not args.no_backup)
             if not success:
                 sys.exit(1)
     except KeyboardInterrupt:

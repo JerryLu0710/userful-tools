@@ -1,4 +1,5 @@
 """Image tool specific configuration."""
+
 import os
 
 from dotenv import load_dotenv

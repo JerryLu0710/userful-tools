@@ -15,6 +15,7 @@ load_dotenv()
 
 class LogLevel(Enum):
     """Logging levels."""
+
     DEBUG = logging.DEBUG
     INFO = logging.INFO
     WARNING = logging.WARNING
